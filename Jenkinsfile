@@ -4,14 +4,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo $(pwd)
-                pip install -r requirements.txt
+                sh 'pip install -r requirements.txt'
+
             }
         }
         stage('Test') {
             steps {
-                echo $(pwd)
-                flake8 scripts/
+                sh '''
+                    echo $(pwd)
+                    flake8 scripts/
+                '''
             }
         }
         stage('Deploy') {
